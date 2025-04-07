@@ -9,7 +9,9 @@ mongoose
   .connect("mongodb+srv://admin:admin@cluster0.p3d0z.mongodb.net/tether")
   .then(() => console.log("Database connected Successfully"));
 
-server.listen(8080, () => console.log("server is running on port 8080"));
+server.listen(process.env.PORT || 8080, () =>
+  console.log("server is running on port 8080")
+);
 
 const io = new Server(server, { cors: true });
 io.on("connection", () => {

@@ -8,17 +8,24 @@ const login = async (req, res) => {
     const user = await User.findOne({
       $or: [{ email: username }, { username }],
     });
-    const passwordMatch = await comparePassword(user.password, password);
-    if (!passwordMatch) {
-      res.status(200).json({
-        success: true,
-        message: "Logged in succcessfully!",
-        data: user,
-      });
-    } else
+    if (!user)
       res
-        .status(401)
-        .json({ success: false, message: "Invalid Username or Password" });
+        .status(404)
+        .json({ success: false, message: "Entered user not found" });
+    else {
+      const passwordMatch = await comparePassword(password, user?.password);
+
+      if (passwordMatch) {
+        res.status(200).json({
+          success: true,
+          message: "Logged in succcessfully!",
+          data: user,
+        });
+      } else
+        res
+          .status(401)
+          .json({ success: false, message: "Invalid Username or Password" });
+    }
   } catch (error) {
     res.status(500).json({
       success: false,
