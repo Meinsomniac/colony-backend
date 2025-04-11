@@ -18,7 +18,6 @@ const sendMail = async ({ to, subject }) => {
       from: "khatriaamir402@gmail.com",
       text: "this is a testing email. so dont get worry",
     });
-    console.log({ info });
   } catch (error) {
     console.log(error, "<><><>");
   }

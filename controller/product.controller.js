@@ -4,7 +4,6 @@ const { Product } = require("../model/product.model");
 const getProducts = async (req, res) => {
   try {
     const products = await Product.find({});
-    console.log(products);
     res.status(200).json({
       status: true,
       product: products,
@@ -26,7 +25,6 @@ const getSingleProduct = async (req, res) => {
 
 const addProduct = async (req, res) => {
   const body = req.body;
-  console.log(body);
   try {
     const product = await Product.create(body);
     res.status(200).json({
