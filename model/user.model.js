@@ -33,7 +33,6 @@ const UserSchema = mongoose.Schema(
     },
     address2: {
       type: String,
-      required: true,
     },
     city: {
       type: String,
@@ -50,6 +49,10 @@ const UserSchema = mongoose.Schema(
     password: {
       type: String,
       required: true,
+    },
+    contacts: {
+      type: [Object],
+      default: [],
     },
   },
   { timestamps: true }

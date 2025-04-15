@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const User = require("../model/user.model");
 
 const generateTokens = async (data) => {
   const accessToken = jwt.sign(data, process.env.JWT_SECRET, {
@@ -33,4 +34,27 @@ const verifyToken = async (req, res, next) => {
   }
 };
 
-module.exports = { generateTokens, verifyToken };
+const checkUser = async (req, res, next) => {
+  const body = req.body;
+  const { username, email } = body;
+  try {
+    const user = await User.findOne({ $or: [{ email }, { username }] });
+    const isEmailExist = user?.email === email;
+    const isUsernameExist = user?.username === username;
+    if (isEmailExist || isUsernameExist) {
+      res.status(403).json({
+        success: false,
+        message: `${isEmailExist ? "Email" : "Username"} is already been used`,
+      });
+    } else {
+      next();
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message || "Something went wrong",
+    });
+  }
+};
+
+module.exports = { generateTokens, verifyToken, checkUser };

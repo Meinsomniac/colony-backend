@@ -59,6 +59,12 @@ const signup = async (req, res) => {
   }
 };
 
+const delay = async () => {
+  return new Promise((res) => {
+    setTimeout(() => res(), 1000);
+  });
+};
+
 const getUserInfo = async (req, res) => {
   try {
     const token = req.get("Authorization")?.split(" ")[1];
@@ -69,6 +75,7 @@ const getUserInfo = async (req, res) => {
     delete details.__v;
     delete details.iat;
     delete details.exp;
+    await delay();
     res.status(200).json({ success: true, data: details });
   } catch (error) {
     res.status(500).json({
