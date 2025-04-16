@@ -8,11 +8,13 @@ const getAllContacts = async (req, res) => {
     const allContacts = await User.find(
       { _id: { $ne: user._id } },
       {
-        select: {
-          _id: 1,
-        },
+        _id: 1,
+        email: 1,
+        firstName: 1,
+        lastName: 1,
+        username: 1,
       }
-    );
+    ).lean();
     res.status(200).json({ success: true, data: allContacts || [] });
   } catch (error) {
     res.status(500).json({
