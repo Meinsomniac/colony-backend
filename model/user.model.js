@@ -11,49 +11,49 @@ const UserSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    age: {
-      type: String,
-      required: true,
-    },
+    // age: {
+    //   type: String,
+    //   required: true,
+    // },
     email: {
       type: String,
       required: true,
     },
-    username: {
-      type: String,
-      required: true,
-    },
+    // username: {
+    //   type: String,
+    //   required: true,
+    // },
     //   dateOfBirth: {
     //     type: String,
     //     required: true,
     //   },
-    address1: {
-      type: String,
-      required: true,
-    },
-    address2: {
-      type: String,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    state: {
-      type: String,
-      required: true,
-    },
-    country: {
-      type: String,
-      required: true,
-    },
+    // address1: {
+    //   type: String,
+    //   required: true,
+    // },
+    // address2: {
+    //   type: String,
+    // },
+    // city: {
+    //   type: String,
+    //   required: true,
+    // },
+    // state: {
+    //   type: String,
+    //   required: true,
+    // },
+    // country: {
+    //   type: String,
+    //   required: true,
+    // },
     password: {
       type: String,
       required: true,
     },
-    contacts: {
-      type: [Object],
-      default: [],
-    },
+    // contacts: {
+    //   type: [Object],
+    //   default: [],
+    // },
   },
   { timestamps: true }
 );
